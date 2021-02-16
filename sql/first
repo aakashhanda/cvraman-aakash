@@ -1,0 +1,64 @@
+Sql   VS  NoSql(its not a sql)
+OLTP 
+online Transactional Processing
+Structured Data
+
+
+> Create DataBase
+> Create Table
+> Create Columns
+> Insert Data
+
+SQL
+Students
+RollNo | Hindi | EngLish | Computer
+1      |  80   |         |
+2      |       | 80      |
+3      |  80   |         |  80
+4      |  80   | 80      |
+
+
+NoSql
+[
+    {
+        rollno:1,
+        hindi:80
+    },
+    {
+        rollno:2,
+        english:80
+    },
+    {
+        rollno:3,
+        hindi:80,
+        computer:80
+    },
+    {
+        rollno:1,
+        hindi:80,
+        english:80
+    }
+]
+
+ATMCashSlip
+
+Account | Amount | Date
+
+Terms
+
+Mongo             Sql(mysql,postgress,oracle)
+DataBase        DataBase
+collections     Tables
+document        row
+find            select 
+
+>>>>mongodb
+_id(primary key)
+(12byte)
+5 bytes random number
+4 bytes timestamp
+3 bytes increment
+
+>>>>  SQL
+we can make our own primary key
+primary key> unique in whole table for each record

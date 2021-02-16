@@ -1,0 +1,96 @@
+///To Create Table
+create table employee(
+	id SERIAL PRIMARY KEY,
+	name TEXT NOT NULL,
+	AGE INT,
+	Phone Int,
+	SALARAY REAL
+)
+
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price DECIMAL(3,2),
+    coffee_origin VARCHAR(50)
+);
+
+SELECT * FROM employee;
+
+INSERT INTO EMPLOYEE(NAME,AGE,PHONE,SALARAY) 
+VALUES ('John',20,8678687,10000.00);
+
+INSERT INTO EMPLOYEE(NAME,AGE,PHONE,SALARAY) 
+VALUES ('Nikita',22,878678,20000.00);
+
+INSERT INTO EMPLOYEE(NAME,AGE,PHONE,SALARAY) 
+VALUES ('Dhaval',20,8678687,10000.00);
+
+
+SELECT * FROM EMPLOYEE;
+
+
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price DECIMAL(3,2),
+    coffee_origin VARCHAR(50)
+);
+
+INSERT into products (name,price,coffee_origin) VALUES 
+('EXPRESSO',2.50,'BRAZIL'),
+('MOCCHIATO',3.40,'BRAZIL'),
+('Cappuccino',3.50,'Costa Rica'),
+('Latte',2.80,'Indonesia'),
+('Americano',3.50,'BRAZIL'),
+('FLAT WHITE',3.00,'Finland')
+
+SELECT * FROM products
+
+
+CREATE TABLE customers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    gender VARCHAR(30),
+    phone_number VARCHAR(11)
+);
+
+db.customers.find({gender:'M'})
+SELECT * from customers where gender='M'
+
+db.customers.find({query},{projection})
+db.customers.find({gender:'F'},{name:1,_id:0})
+
+SELECT * from customers where gender='F';
+SELECT first_name from customers where gender='F'
+
+SELECT * from customers where gender='M';
+SELECT first_name from customers where gender='F'
+
+SELECT first_name,gender,last_name from customers 
+where gender='M' OR last_name='Law'
+
+SELECT first_name,gender,last_name from customers 
+where gender='F' AND last_name='Law'
+
+SELECT first_name,gender,last_name from customers 
+where last_name IN ('Bluth','Smith','Taylor')
+
+SELECT first_name from customers 
+Where first_name Like 'P%l'
+
+'%C%' > c anywhere in name
+'C%' > start with C
+'%C' > End with C 
+'P%L' > start with E and End with L 
+
+CREATE TABLE orders(
+    id SERIAL PRIMARY KEY,
+    product_id INT,
+    customer_id INT,
+    order_time DATETIME
+);
+
+SELECT customer_id, count(product_id) from orders
+GROUP By customer_id 
+order By customer_id
