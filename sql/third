@@ -101,3 +101,24 @@ CREATE TABLE orders(
 
 INSERT INTO orders (product_id,customer_id,order_time) 
 VALUES (8,1,'2016-01-01 08:02:11')
+
+
+/* give me customer name and product id*/
+SELECT c.first_name, o.product_id 
+from customers c
+LeFT JOIN 
+orders o
+/* match id for customer table with customer_id in order table*/
+on o.customer_id = c.id 
+/* where product_id in order table is 1*/
+where o.product_id=1
+
+
+
+
+/* customer_id who bought product 1*/
+SELECT customer_id from orders where product_id=1
+/*name of customer on basis of customer_id*/
+SELECT first_name from customers where id=9
+
+
