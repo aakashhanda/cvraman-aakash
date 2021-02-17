@@ -1,0 +1,103 @@
+> update > use for update data in table
+> alter > update table structure
+
+>delete > delete particular column
+>drop > delete data and table structure
+> truncate > delete all data of table not structure
+
+SELECT * from customers where last_name = 'Bluth'
+
+update customers
+SET gender = 'M', age=10
+where last_name = 'Bluth'
+
+TRUNCATE TABLE customers;
+DROP TABLE customers
+
+
+SELECT * from customers
+
+Update customers
+set age = 18
+
+Update customers
+set email = 'dummyemail'
+
+ALTER TABLE customers drop column email
+ALTER TABLE customers add column email varchar
+
+ALTER TABLE customers 
+alter column email 
+SET NOT NULL
+
+INSERT INTO customers (first_name, last_name, gender,email, phone) VALUES 
+('Aakash','Jain','M','01123147789','a@a.com')
+
+ALTER TABLE customers
+RENAME COLUMN phone_number To phone
+
+SELECT * from customers
+
+
+Delete From customers
+where first_name = 'Aakash'
+
+DElete from customers
+TRUNCATE TABLE customers;
+DROP TABLE customers
+
+
+/////////////////
+CREATE TABLE orders(
+    id SERIAL PRIMARY KEY,
+    product_id INT,
+    customer_id INT,
+    order_time DATETIME,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE customers(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    gender VARCHAR(30),
+    phone_number VARCHAR(11)
+);
+
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price DECIMAL(3,2),
+    coffee_origin VARCHAR(50)
+);
+
+give me name of customer who took product 1
+
+////
+get the id of customer who took product 1 (ordertable)
+            ||  (id of customer)
+            \/
+get name of customer for customer table ont basis of id 
+            ||
+            \/
+we will get the name of customer who took product 1
+
+
+SELECT * from customers
+SELECT * from products
+SELECT * from orders
+
+drop table orders
+
+CREATE TABLE orders(
+    id SERIAL PRIMARY KEY,
+    product_id INT,
+    customer_id INT,
+    order_time timestamp,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+INSERT INTO orders (product_id,customer_id,order_time) 
+VALUES (8,1,'2016-01-01 08:02:11')
