@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add new Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+  <!--DataTable-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <br>
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">Developer Funnel</a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/new">Add new</a>
+                </li>
+                </ul>
+            </div> 
+            </nav>
+            <br/><br/>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" id="myTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(i=0;i<data.length;i++){%>
+                            <tr>
+                                <td><%=data[i].name%></td>
+                                <td><%=data[i].city%></td>
+                                <td><%=data[i].phone%></td>
+                                <td><%=data[i].email%></td>
+                                <td><%=data[i].role%></td>
+                                <td>
+                                    <button type="button" class="edit btn btn-warning"
+                                    data-toggle="modal" data-target="#myModal"
+                                    id="<%=data[i]._id%>">Edit</button>
+                                    <button type="button" class="btn btn-danger" id="<%=data[i]._id%>">Delete</button>
+                                </td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                    
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                    
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form action="/editUser" method="POST" id="update_user">
+                                    <input type="text" readonly class="form-control" id="update_id"  name="_id">
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control" id="update_name" placeholder="Enter First name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City:</label>
+                                        <input type="text" class="form-control" id="update_city" placeholder="Enter City" name="city">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone:</label>
+                                        <input type="phone" class="form-control" id="update_phone" placeholder="Enter phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" id="update_email" placeholder="Enter Email" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="role">Role:</label>
+                                        <input type="role" class="form-control" id="update_role"  name="role" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="role">IsActive:</label>
+                                        <input type="role" class="form-control" id="update_active"  name="isActive" readonly>
+                                    </div>
+                                    
+                                </form>
+                  
+                            </div>
+                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="update_table" class="btn btn-primary">update</button>
+                            </div>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#myTable').DataTable()
+        })
+        $('.edit').click(function(){
+            id=this.id;
+            console.log(id)
+            $.ajax({
+                type:'get',
+                url:`/user/${id}`,
+                success:function(data){
+                    //console.log(data)
+                    $("#update_id").attr("value",data._id);
+                    $("#update_name").attr("value", data.name);
+                    $("#update_city").attr("value", data.city);
+                    $("#update_phone").attr("value", data.phone);
+                    $("#update_role").attr("value", data.role);
+                    $("#update_email").attr("value", data.email);
+                    $("#update_active").attr("value", data.isActive);
+                }
+            })
+        })
+
+        $(function(){
+            $('#update_table').on('click',function(){
+                var data = $('#update_user').serialize()
+                console.log(data)
+                $.ajax({
+                    url:'/editUser',
+                    type:'PUT',
+                    data:data,
+                    success:function(data){
+                        console.log("Success")
+                        window.location.reload()
+                    },
+                    error:function(){
+                        alert("Invalid Action")
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

@@ -2,3 +2,6 @@ npm i pg express
 
 Redis with api
 redis with mongo
+
+npm i express body-parser jsonwebtoken bcryptjs cors mongoose
+
