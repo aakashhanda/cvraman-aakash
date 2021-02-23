@@ -2,3 +2,5 @@
 module.exports = {
     'secret':'cvramansecret'
 }
+
+/// userid+secret = token

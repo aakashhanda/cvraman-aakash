@@ -15,6 +15,7 @@ router.use(bodyParser.json());
 //register User
 router.post('/register',(req,res) => {
     var hashpassword = bcrypt.hashSync(req.body.password,8);
+    // write on condition check if email already exist
     User.create({
         name: req.body.name,
         password: hashpassword,
