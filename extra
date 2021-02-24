@@ -5,3 +5,31 @@ redis with mongo
 
 npm i express body-parser jsonwebtoken bcryptjs cors mongoose
 
+function add(a,b){
+    return a+b
+}
+
+add()
+
+jwt.sign(un,string,time)
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMzRiNTNhMGY3MzlhM2UyNzZlNjdiNiIsImlhdCI6MTYxNDE0ODg2MywiZXhwIjoxNjE0MTUyNDYzfQ.D_vkcIjGk52qnNWfslCUAFC6pnCaYwpW21AcVTwFN0M
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMzRiNTY3MGY3MzlhM2UyNzZlNjdiNyIsImlhdCI6MTYxNDE1MDUzNCwiZXhwIjoxNjE0MTU0MTM0fQ.ltIUXlvf0S29w1b8-Epvn1WY3a1ACZxVlL_xTCXY_vY
+
+////////////////////////
+insert
+insertmany
+
+find
+findbyid
+findwithprojection
+findwithcondition
+
+update
+upsert
+
+deleteone
+delete
+db.user.remove({})
