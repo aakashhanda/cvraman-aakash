@@ -33,3 +33,68 @@ upsert
 deleteone
 delete
 db.user.remove({})
+{
+	"_id" : ObjectId("6034b5670f739a3e276e67b7"),
+	"name" : "Aakash",
+	"password" : "$2a$08$3Qv7ACMjBv5.Q5SHMI.EMu/0IAB7mFRZMXrEcUrXoz.IG8.7Az4Qu",
+	"email" : "aakash@gmail.com",
+	"role" : "Admin",
+	"isActive" : true,
+	"__v" : 0
+}
+
+db.loginusers.update(
+    {"name":"Nikita"},
+    {
+        $set:{
+           "isActive" : false 
+        }
+    },
+    {
+        upsert:true
+    }
+)
+
+upsert
+update+insert
+
+npm i express cors body-parser mongodb
+
+/*
+a = 10
+var b = 20
+
+add(a,b)
+
+function add(a,b){
+    return a+b
+}
+
+var a;
+
+var a;
+var b;
+
+function add(a,b){
+    return a+b
+}
+
+a=10
+b=20
+add(a,b)
+
+if(){
+
+}
+else if(){
+
+}
+
+
+
+if(){
+
+}
+if(){
+
+}
